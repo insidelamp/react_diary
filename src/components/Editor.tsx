@@ -49,14 +49,14 @@ function Editor({ initData, onSubmit }: EditorType) {
     }
   };
   useEffect(() => {
-    if (initData && typeof initData.date === "string") {
+    if (initData) {
+      let stringDate = String(initData.date);
       setState({
         ...initData,
-        date: getFormattedDate(new Date(parseInt(initData.date))),
+        date: getFormattedDate(new Date(parseInt(stringDate))),
       });
     }
   }, [initData]);
-  console.log(initData);
   return (
     <div>
       <div>
