@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-interface BtnType {
+export interface BtnType {
   text?: string;
   type: string;
   onClickFunc?: React.MouseEventHandler<HTMLButtonElement> | undefined;
@@ -8,7 +8,6 @@ interface BtnType {
 
 function Button({ text, type, onClickFunc }: BtnType) {
   const btnType = ["positive", "negative"].includes(type) ? type : "default";
-  console.log(btnType);
   return (
     <ButtonStyle className={`${btnType}`} onClick={onClickFunc}>
       {text}

@@ -4,7 +4,7 @@ import emotion3 from "./img/emotion3.png";
 import emotion4 from "./img/emotion4.png";
 import emotion5 from "./img/emotion5.png";
 
-export const getEmotionImgById = (emotionId: string | undefined) => {
+export const getEmotionImgById = (emotionId: string | number | undefined) => {
   const targetEmotionId = emotionId;
   switch (targetEmotionId) {
     case "1":
@@ -19,5 +19,51 @@ export const getEmotionImgById = (emotionId: string | undefined) => {
       return emotion5;
     default:
       return undefined;
+  }
+};
+
+export const emotionList = [
+  {
+    id: 1,
+    name: "완전 좋음",
+    img: getEmotionImgById("1"),
+  },
+  {
+    id: 2,
+    name: "좋음",
+    img: getEmotionImgById("2"),
+  },
+  {
+    id: 3,
+    name: "그럭저럭",
+    img: getEmotionImgById("3"),
+  },
+  {
+    id: 4,
+    name: "나쁨",
+    img: getEmotionImgById("4"),
+  },
+  {
+    id: 5,
+    name: "끔찍함",
+    img: getEmotionImgById("5"),
+  },
+];
+
+export const getFormattedDate = (targetDate: Date | null) => {
+  if (targetDate === null) {
+    targetDate = new Date();
+  }
+
+  let year = targetDate?.getFullYear();
+  let month = targetDate?.getMonth();
+  let date = targetDate?.getDate();
+
+  if (month < 10) {
+    return `${year}-${"0" + (month + 1)}-${date}`;
+  } else if (date < 10) {
+    return `${year}-${month}-${"0" + date}`;
+  } else {
+    return `${year}-${month}-${date}`;
   }
 };
