@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 interface HeaderType {
   title: string;
   leftChild: JSX.Element;
@@ -18,9 +19,11 @@ const Header = ({ title, leftChild, rightChild }: HeaderType) => {
 
 const HeadeWrapper = styled.div`
   padding: 20px 0px;
+  height: 30%;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;
+  border: 1px solid red;
 `;
 const HeaderTitle = styled.div`
   width: 50%;

@@ -17,11 +17,11 @@ export const defaultData = (
 };
 
 export const onCreate = (
-  { date, content, emotionId }: DateType,
+  { date, content, emotionId, id }: DateType,
   idRef: any,
   dispatch: ({ type, data }: Actions) => void
 ) => {
-  if (date !== undefined && idRef !== null) {
+  if (date !== undefined && id != null) {
     dispatch({
       type: "CREATE",
       data: {

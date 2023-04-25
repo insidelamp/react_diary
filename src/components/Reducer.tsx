@@ -5,8 +5,8 @@ export type Actions =
   | { type: "INIT"; data: DateType[] };
 
 export interface DateType {
-  id?: number | string;
-  date?: number;
+  id?: number | string | null | Element;
+  date: number;
   content?: string;
   emotionId?: number;
   targetId?: number | string;
@@ -28,7 +28,6 @@ export function reducer(state: DateType[], action: Actions) {
       );
     }
     case "INIT": {
-      console.log(action.data);
       return action.data;
     }
     default: {
