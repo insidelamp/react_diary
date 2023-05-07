@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import styled from "styled-components";
 import { DateType } from "../components/Reducer";
 import { getMonthRangeByDate } from "../until";
+import DiaryList from "../components/DiaryList";
 function Home() {
   const [pivotDate, setPrivotDate] = useState<Date>(new Date());
   const data = useContext(DiaryStateContext);
@@ -12,6 +13,7 @@ function Home() {
   const headerTitle = `${pivotDate.getFullYear()}년 ${
     pivotDate.getMonth() + 1
   }월`;
+  console.log(data);
 
   const onIncreaseMonth = () => {
     setPrivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
@@ -41,6 +43,7 @@ function Home() {
         leftChild={<Button text={"<"} onClickFunc={onDecreaseMonth} />}
         rightChild={<Button text={">"} onClickFunc={onIncreaseMonth} />}
       />
+      <DiaryList data={filteredData} />
     </HomeWrapper>
   );
 }
