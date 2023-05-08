@@ -6,7 +6,7 @@ export type Actions =
 
 export interface DateType {
   id?: number | string | null | Element;
-  date: number;
+  date: number | string;
   content?: string;
   emotionId?: number;
   targetId?: number | string;

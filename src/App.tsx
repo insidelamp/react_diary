@@ -24,24 +24,24 @@ interface StateType {
   type: string;
   data: Partial<DateType>;
 }
-interface IStateContext {
+type IStateContext = {
   data?: DateType[];
-  onCreate?: (
-    { date, content, emotionId, id }: DateType,
+  onCreate: (
+    { date, content, emotionId }: DateType,
     idRef: any,
     dispatch: ({ type, data }: Actions) => void
   ) => void;
-  onUpdate?: (
+  onUpdate: (
     { targetId, date, content, emotionId }: DateType,
     idRef: any,
     dispatch: ({ type, data }: Actions) => void
   ) => void;
-  onDelete?: (
+  onDelete: (
     { targetId, date }: DateType,
     idRef: any,
     dispatch: ({ type, data }: Actions) => void
   ) => void;
-}
+};
 
 export const DiaryStateContext = React.createContext<DateType[] | null>(null);
 export const DiaryDispatchContext = React.createContext<

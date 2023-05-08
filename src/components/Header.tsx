@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 interface HeaderType {
   title: string;
-  leftChild: JSX.Element;
-  rightChild: JSX.Element;
+  leftChild?: JSX.Element;
+  rightChild?: JSX.Element;
 }
 
 const Header = ({ title, leftChild, rightChild }: HeaderType) => {
@@ -23,7 +23,6 @@ const HeadeWrapper = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;
-  border: 1px solid red;
 `;
 const HeaderTitle = styled.div`
   width: 50%;

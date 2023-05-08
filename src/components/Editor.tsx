@@ -4,27 +4,24 @@ import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import EmotionItem from "./EmotionItem";
+import { DateType } from "./Reducer";
 
 interface EditorType {
-  initData: StateType;
-  onSubmit: ({ date, emotionId, content }: StateType) => void | undefined;
-}
-interface StateType {
-  date: number | string;
-  emotionId: number;
-  content: string;
+  initData?: DateType;
+  onSubmitFunc: ({ date, emotionId, content }: DateType) => void | undefined;
 }
 
-function Editor({ initData, onSubmit }: EditorType) {
-  const [state, setState] = useState<StateType>({
+function Editor({ initData, onSubmitFunc }: EditorType) {
+  const [state, setState] = useState<DateType>({
     date: "",
-    emotionId: 3,
+    emotionId: 4,
     content: "",
   });
   const navigate = useNavigate();
   const handleOnGoBack = () => {
     navigate(-1);
   };
+
   const handleChangeDate = (e: React.FormEvent<HTMLInputElement>) => {
     setState({
       ...state,
@@ -44,9 +41,7 @@ function Editor({ initData, onSubmit }: EditorType) {
   };
 
   const handleSubmit = () => {
-    if (state != null) {
-      onSubmit(state);
-    }
+    onSubmitFunc(state);
   };
   useEffect(() => {
     if (initData) {
@@ -56,7 +51,8 @@ function Editor({ initData, onSubmit }: EditorType) {
         date: getFormattedDate(new Date(parseInt(stringDate))),
       });
     }
-  }, [initData]);
+  }, [initData, state]);
+  console.log(state);
   return (
     <div>
       <div>

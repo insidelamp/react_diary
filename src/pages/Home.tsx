@@ -14,7 +14,6 @@ function Home() {
     pivotDate.getMonth() + 1
   }월`;
   console.log(data);
-
   const onIncreaseMonth = () => {
     setPrivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
   };
@@ -26,7 +25,6 @@ function Home() {
   useEffect(() => {
     if (data !== null && data.length >= 1) {
       const { beginTimeStamp, endTimeStamp } = getMonthRangeByDate(pivotDate);
-      console.log(data);
       setFilteredDate(
         data.filter(
           (it) => beginTimeStamp <= it.date && it.date <= endTimeStamp
