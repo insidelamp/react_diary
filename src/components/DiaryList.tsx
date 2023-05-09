@@ -13,7 +13,6 @@ function DiaryList(data: { data: DateType[] }) {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState<string>("latest");
   const [sortedData, setSortedData] = useState<DateType[]>([]);
-
   const onChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortType(e.target.value);
   };
@@ -54,7 +53,7 @@ function DiaryList(data: { data: DateType[] }) {
       </MenuWrapper>
       <ListWrapper>
         {sortedData.map((it) => (
-          <DiaryItem key={it.targetId} {...it} />
+          <DiaryItem key={it.id} {...it} />
         ))}
       </ListWrapper>
     </Wrapper>

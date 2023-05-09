@@ -8,18 +8,14 @@ import { DateType } from "../components/Reducer";
 
 function New() {
   const navigate = useNavigate();
-  const hooks = useContext(DiaryDispatchContext);
+  const { onCreate } = useContext(DiaryDispatchContext);
   const goBack = () => {
     navigate(-1);
   };
 
   const onSubmit = (data: any) => {
     const { date, content, emotionId } = data;
-    if (hooks) {
-      console.log(11);
-      hooks.onCreate(date, content, emotionId);
-      console.log(date, content, emotionId);
-    }
+    onCreate({ date, content, emotionId });
     navigate("/", { replace: true });
   };
   return (

@@ -13,7 +13,6 @@ function Home() {
   const headerTitle = `${pivotDate.getFullYear()}년 ${
     pivotDate.getMonth() + 1
   }월`;
-  console.log(data);
   const onIncreaseMonth = () => {
     setPrivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
   };

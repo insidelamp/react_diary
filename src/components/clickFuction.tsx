@@ -21,7 +21,9 @@ export const onCreate = (
   idRef: any,
   dispatch: ({ type, data }: Actions) => void
 ) => {
-  if (date !== undefined && id != null) {
+  console.log(date, id, "123");
+  if (date && id) {
+    console.log(date, id, "test");
     dispatch({
       type: "CREATE",
       data: {

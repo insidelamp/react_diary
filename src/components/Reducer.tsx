@@ -4,16 +4,20 @@ export type Actions =
   | { type: "DELETE"; data: DateType }
   | { type: "INIT"; data: DateType[] };
 
-export interface DateType {
-  id?: number | string | null | Element;
+export type DateType = {
+  id?: number | string;
   date: number | string;
   content?: string;
   emotionId?: number;
   targetId?: number | string;
-}
+};
 
 export function reducer(state: DateType[], action: Actions) {
+  console.log(state, action);
   switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
     case "CREATE": {
       return [action.data, ...state];
     }
@@ -26,9 +30,6 @@ export function reducer(state: DateType[], action: Actions) {
       return state.filter(
         (it: DateType) => String(it.id) !== String(action.data.targetId)
       );
-    }
-    case "INIT": {
-      return action.data;
     }
     default: {
       return state;
