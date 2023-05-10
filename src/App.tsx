@@ -57,7 +57,19 @@ function App() {
   >(reducer, []);
   const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
   useEffect(() => {
-    defaultData(mockData);
+    const rawData = localStorage.getItem("diary");
+    if (!rawData) {
+      setIsDataLoaded(true);
+      return;
+    }
+    const localData = JSON.parse(rawData);
+    if (localData.length === 0) {
+      setIsDataLoaded(true);
+      return;
+    }
+    localData.sort((a: DateType, b: DateType) => Number(b.id) - Number(a.id));
+    idRef.current = localData[0].id + 1;
+    dispatch({ type: "INIT", data: localData });
     setIsDataLoaded(true);
   }, []);
 

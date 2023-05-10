@@ -71,4 +71,4 @@ const EmotionItemImg = styled.img`
 const EmotionItemSpan = styled.span`
   font-size: 18px;
 `;
-export default EmotionItem;
+export default React.memo(EmotionItem);

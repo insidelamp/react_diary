@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getFormattedDate, emotionList } from "../until";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
@@ -37,9 +37,12 @@ function Editor({ initData, onSubmitFunc }: EditorType) {
       content: e.target.value,
     });
   };
-  const handleChangeEmotion = (emotionId: number) => {
-    setState({ ...state, emotionId });
-  };
+  const handleChangeEmotion = useCallback((emotionId: number) => {
+    setState((state) => ({
+      ...state,
+      emotionId,
+    }));
+  }, []);
   const handleSubmit = () => {
     onSubmitFunc(state);
   };

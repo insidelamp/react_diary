@@ -82,4 +82,4 @@ const ContentWrapper = styled.div`
 const ButtonSection = styled.div`
   min-width: 70px;
 `;
-export default DiaryItem;
+export default React.memo(DiaryItem);

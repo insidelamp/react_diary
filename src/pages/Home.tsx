@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import styled from "styled-components";
 import { DateType } from "../components/Reducer";
-import { getMonthRangeByDate } from "../until";
+import { getMonthRangeByDate, setPageTitle } from "../until";
 import DiaryList from "../components/DiaryList";
 function Home() {
   const [pivotDate, setPrivotDate] = useState<Date>(new Date());
@@ -33,6 +33,9 @@ function Home() {
       setFilteredDate([]);
     }
   }, [data, pivotDate]);
+  useEffect(() => {
+    setPageTitle("React+TypeScript 감정일기장");
+  }, []);
   return (
     <HomeWrapper>
       <Header

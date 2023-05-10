@@ -18,17 +18,23 @@ export function reducer(state: DateType[], action: Actions) {
       return action.data;
     }
     case "CREATE": {
-      return [action.data, ...state];
+      const newState = [action.data, ...state];
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     }
     case "UPDATE": {
-      return state.map((it: DateType) =>
+      const newState = state.map((it: DateType) =>
         String(it.id) === String(action.data.id) ? { ...action.data } : it
       );
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     }
     case "DELETE": {
-      return state.filter(
+      const newState = state.filter(
         (it: DateType) => String(it.id) !== String(action.data.targetId)
       );
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     }
     default: {
       return state;
