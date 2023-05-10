@@ -24,7 +24,7 @@ body {
   margin: 0 auto;
   max-width: 700px;
   width: 100%;
-  height: 80vh;
+  height: 90vh;
   background-color: white;
   box-shadow: rgba(100,100,100,0.2) 0px 7px 29px 0px;
   overflow: hidden;
@@ -35,7 +35,7 @@ body {
 .App{
   padding:0px 20px;
   width: 100%;
-  height: 75vh;
+  height: 85vh;
   overflow-y: hidden;
 }
 
