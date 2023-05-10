@@ -70,7 +70,6 @@ const Wrapper = styled.div`
   font-size: 18px;
   flex-grow: 1;
   width: 100%;
-  border: 2px solid blue;
 `;
 
 const MenuWrapper = styled.div`

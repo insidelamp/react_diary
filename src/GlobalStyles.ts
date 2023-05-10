@@ -25,7 +25,6 @@ body {
   max-width: 700px;
   width: 100%;
   height: 80vh;
-border: 5px solid yellow;
   background-color: white;
   box-shadow: rgba(100,100,100,0.2) 0px 7px 29px 0px;
   overflow: hidden;
