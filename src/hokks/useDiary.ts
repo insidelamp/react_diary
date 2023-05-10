@@ -17,6 +17,6 @@ const useDiary = (id: string | number | undefined) => {
       // replace 속성을 true로 할경우 페이지를 이동후 다시 돌아오수없도록 뒤로가기 아이콘을 비활성화시킴
     }
   }, [id, data]);
-  return data;
+  return diary;
 };
 export default useDiary;

@@ -13,7 +13,6 @@ export type DateType = {
 };
 
 export function reducer(state: DateType[], action: Actions) {
-  console.log(state, action);
   switch (action.type) {
     case "INIT": {
       return action.data;

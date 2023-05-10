@@ -40,17 +40,10 @@ function Editor({ initData, onSubmitFunc }: EditorType) {
   const handleChangeEmotion = (emotionId: number) => {
     setState({ ...state, emotionId });
   };
-  console.log(111, state);
   const handleSubmit = () => {
     onSubmitFunc(state);
   };
   useEffect(() => {
-    // let stringDate = String(initData?.date);
-    // console.log(initData);
-    // setState({
-    //   ...initData,
-    //   date: getFormattedDate(new Date(parseInt(stringDate))),
-    // });
     if (initData) {
       let stringDate = String(initData.date);
       setState({
