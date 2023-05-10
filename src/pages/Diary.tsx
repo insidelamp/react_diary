@@ -1,11 +1,11 @@
-import React from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useDiary from "../hokks/useDiary";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { getFormattedDate } from "../until";
-import { DateType } from "../components/Reducer";
 import Viewer from "../components/Viewer";
+import { setPageTitle } from "../until";
 function Diary() {
   const { id } = useParams();
   const data = useDiary(id);
@@ -17,7 +17,9 @@ function Diary() {
   const goEdit = () => {
     navigate(`/edit/${id}`);
   };
-
+  useEffect(() => {
+    setPageTitle(`${id}번 일기`);
+  }, []);
   if (!data) {
     return <div>일기를 불러오고 있습니다...</div>;
   } else {

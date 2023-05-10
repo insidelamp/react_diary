@@ -1,12 +1,5 @@
-import { getEmotionImgById } from "./until";
 import { Routes, Route } from "react-router-dom";
-import React, {
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-  Dispatch,
-} from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { reducer, DateType, Actions } from "./components/Reducer";
 
 import Home from "./pages/Home";
@@ -26,32 +19,9 @@ export const DiaryDispatchContext = React.createContext<IStateContext>(
   {} as IStateContext
 );
 
-const mockData = [
-  {
-    id: "mock1",
-    date: new Date().getTime() - 1,
-    content: "mock1",
-    emotionId: 1,
-    targetId: 1,
-  },
-  {
-    id: "mock2",
-    date: new Date().getTime() - 2,
-    content: "mock2",
-    emotionId: 2,
-    targetId: 2,
-  },
-  {
-    id: "mock3",
-    date: new Date().getTime() - 3,
-    content: "mock3",
-    emotionId: 3,
-    targetId: 3,
-  },
-];
-
 function App() {
-  const idRef = useRef<number>(mockData.length);
+  const idRef = useRef<number>(0);
+  console.log(idRef);
   const [data, dispatch] = useReducer<
     (arg1: DateType[], actions: Actions) => DateType[]
   >(reducer, []);
@@ -73,14 +43,8 @@ function App() {
     setIsDataLoaded(true);
   }, []);
 
-  const defaultData = (data: DateType[]) => {
-    dispatch({
-      type: "INIT",
-      data: [...data],
-    });
-  };
-
   const onCreate = ({ date, content, emotionId }: DateType) => {
+    console.log(idRef);
     dispatch({
       type: "CREATE",
       data: {
@@ -90,6 +54,7 @@ function App() {
         emotionId,
       },
     });
+    idRef.current += 1;
   };
 
   const onUpdate = ({ targetId, date, content, emotionId }: DateType) => {

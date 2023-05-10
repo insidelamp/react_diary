@@ -1,4 +1,3 @@
-import React from "react";
 import { DateType } from "./Reducer";
 import { emotionList } from "../until";
 import styled from "styled-components";

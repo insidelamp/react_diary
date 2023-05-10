@@ -13,7 +13,7 @@ interface EditorType {
 
 function Editor({ initData, onSubmitFunc }: EditorType) {
   const [state, setState] = useState<DateType>({
-    date: "",
+    date: getFormattedDate(new Date()),
     emotionId: 3,
     content: "",
   });
@@ -58,7 +58,7 @@ function Editor({ initData, onSubmitFunc }: EditorType) {
   return (
     <div>
       <div>
-        <EditorH4>오늘의 날씨</EditorH4>
+        <EditorTitle>오늘의 날씨</EditorTitle>
         <div>
           <EditorInput
             type="date"
@@ -68,7 +68,7 @@ function Editor({ initData, onSubmitFunc }: EditorType) {
         </div>
       </div>
       <div>
-        <EditorH4>오늘의 감정</EditorH4>
+        <EditorTitle>오늘의 감정</EditorTitle>
         <EditorListWrapper>
           {emotionList.map((it) => (
             <EmotionItem
@@ -81,7 +81,7 @@ function Editor({ initData, onSubmitFunc }: EditorType) {
         </EditorListWrapper>
       </div>
       <div>
-        <EditorH4>오늘의 일기</EditorH4>
+        <EditorTitle>오늘의 일기</EditorTitle>
         <div>
           <EditorTextarea
             value={state.content}
@@ -113,7 +113,8 @@ const EditorSection = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const EditorH4 = styled.h1`
+const EditorTitle = styled.h1`
+  margin: 20px 0px;
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 40px;

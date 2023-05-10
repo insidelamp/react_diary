@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
 import Button from "../components/Button";
@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import useDiary from "../hokks/useDiary";
 import { DateType } from "../components/Reducer";
 import Editor from "../components/Editor";
-import { onUpdate } from "../components/clickFuction";
+import { setPageTitle } from "../until";
 
 function Edit() {
   const { id } = useParams();
@@ -33,6 +33,9 @@ function Edit() {
       }
     }
   };
+  useEffect(() => {
+    setPageTitle(`${id}번 일기 수정하기`);
+  }, []);
 
   if (!data) {
     return <div>일기를 불러오고 있습니다</div>;
