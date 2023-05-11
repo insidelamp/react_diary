@@ -21,7 +21,6 @@ export const DiaryDispatchContext = React.createContext<IStateContext>(
 
 function App() {
   const idRef = useRef<number>(0);
-  console.log(idRef);
   const [data, dispatch] = useReducer<
     (arg1: DateType[], actions: Actions) => DateType[]
   >(reducer, []);
@@ -44,7 +43,6 @@ function App() {
   }, []);
 
   const onCreate = ({ date, content, emotionId }: DateType) => {
-    console.log(idRef);
     dispatch({
       type: "CREATE",
       data: {

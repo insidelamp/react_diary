@@ -108,7 +108,7 @@ const EditorListWrapper = styled.div`
   gap: 2%;
 `;
 const EditorSection = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +117,6 @@ const EditorTitle = styled.h1`
   margin: 20px 0px;
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 40px;
 `;
 const EditorInput = styled.input`
   border: none;
@@ -128,7 +127,7 @@ const EditorInput = styled.input`
   font-family: "Instrument Serif", serif;
   padding: 10px 0px;
   cursor: pointer;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 const EditorTextarea = styled.textarea`
   border: none;
@@ -138,10 +137,10 @@ const EditorTextarea = styled.textarea`
   font-size: 20px;
   font-family: "Instrument Serif", serif;
   width: 100%;
-  min-height: 200px;
+  min-height: 150px;
   box-sizing: border-box;
   resize: vertical;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 const EditorBtnSpace = styled.div`
   width: 100%;

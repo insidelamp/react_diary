@@ -70,6 +70,7 @@ const Wrapper = styled.div`
   font-size: 18px;
   flex-grow: 1;
   width: 100%;
+  position: relative;
 `;
 
 const MenuWrapper = styled.div`
@@ -78,6 +79,7 @@ const MenuWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  position: absolute;
 `;
 
 const MenuSelect = styled.select`
@@ -98,6 +100,11 @@ const ListRight = styled.div`
     flex-grow: 1;
   }
 `;
-const ListWrapper = styled.div``;
+const ListWrapper = styled.div`
+  margin-top: 80px;
+  overflow: scroll;
+  width: 100%;
+  height: 70vh;
+`;
 
 export default DiaryList;

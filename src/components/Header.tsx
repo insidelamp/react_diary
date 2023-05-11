@@ -17,8 +17,8 @@ const Header = ({ title, leftChild, rightChild }: HeaderType) => {
 };
 
 const HeadeWrapper = styled.div`
-  padding: 20px 0px;
-  height: 30%;
+  padding: 15px 0px;
+  height: 20%;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;
