@@ -14,9 +14,10 @@ const sortOptionList = [
 
 interface ListType {
   data: DateType[];
-  setSelectBackImg: React.Dispatch<React.SetStateAction<number>>;
+  clickModal: boolean;
+  setClickModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
-function DiaryList({ data, setSelectBackImg }: ListType) {
+function DiaryList({ data, clickModal, setClickModal }: ListType) {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState<string>("latest");
   const [sortedData, setSortedData] = useState<DateType[]>([]);
@@ -26,6 +27,10 @@ function DiaryList({ data, setSelectBackImg }: ListType) {
   const onClickNew = () => {
     navigate("/new");
   };
+
+  function clickModalFunc() {
+    setClickModal(!clickModal);
+  }
 
   useEffect(() => {
     const compare = (a: DateType, b: DateType) => {
@@ -58,7 +63,7 @@ function DiaryList({ data, setSelectBackImg }: ListType) {
             onClickFunc={onClickNew}
           />
         </ListRight>
-        <BackSelectBtn>배경선택</BackSelectBtn>
+        <BackSelectBtn onClick={clickModalFunc}>배경선택</BackSelectBtn>
       </MenuWrapper>
       <ListWrapper>
         {sortedData.map((it) => (
@@ -68,14 +73,6 @@ function DiaryList({ data, setSelectBackImg }: ListType) {
     </Wrapper>
   );
 }
-const BackSelectBtn = styled.div`
-  width: 200px;
-  background-color: goldenrod;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-`;
 
 const Wrapper = styled.div`
   margin: 20px 10px 30px 0px;
@@ -105,9 +102,9 @@ const MenuSelect = styled.select`
   border: none;
   border-radius: 5px;
   background-color: #ececec;
-  padding: 10px 20px;
+  padding: 10px 15px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 13px;
 `;
 const ListRight = styled.div`
   border: none;
@@ -118,6 +115,16 @@ const ListRight = styled.div`
     flex-grow: 1;
   }
 `;
+const BackSelectBtn = styled.div`
+  width: 200px;
+  font-size: 13px;
+  background-color: goldenrod;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
+
 const ListWrapper = styled.div`
   margin-top: 80px;
   overflow: scroll;

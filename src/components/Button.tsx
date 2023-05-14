@@ -23,8 +23,8 @@ const ButtonStyle = styled.button`
   cursor: pointer;
   border: none;
   box-sizing: 5px;
-  padding: 10px 20px;
-  font-size: 18px;
+  padding: 10px 15px;
+  font-size: 13px;
   white-space: nowrap;
   font-family: "Instrument Serif", serif;
   background-color: #ececec;

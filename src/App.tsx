@@ -23,12 +23,22 @@ type IStateContext = {
   onDelete: ({ targetId, date }: DateType) => void;
 };
 export type BackImgSelectType = {
-  setSelectBackImg: React.Dispatch<React.SetStateAction<number>>;
+  clickModal: boolean;
+  setClickModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const DiaryStateContext = React.createContext<DateType[] | null>(null);
 export const DiaryDispatchContext = React.createContext<IStateContext>(
   {} as IStateContext
 );
+export const backImgArr = [
+  { img: backImg1, name: "숲" },
+  { img: backImg2, name: "우주" },
+  { img: backImg3, name: "나뭇잎" },
+  { img: backImg4, name: "연꽃" },
+  { img: backImg5, name: "꽃" },
+  { img: backImg6, name: "나무" },
+  { img: backImg7, name: "등" },
+];
 
 function App() {
   const idRef = useRef<number>(0);
@@ -37,6 +47,7 @@ function App() {
   >(reducer, []);
   const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
   const [selectBackImg, setSelectBackImg] = useState<number>(0);
+  const [clickModal, setClickModal] = useState<boolean>(false);
   useEffect(() => {
     const rawData = localStorage.getItem("diary");
     if (!rawData) {
@@ -93,19 +104,19 @@ function App() {
 
   function changeImg(select: number) {
     if (select == 0) {
-      return backImg1;
+      setSelectBackImg(0);
     } else if (select == 1) {
-      return backImg2;
+      setSelectBackImg(1);
     } else if (select == 2) {
-      return backImg3;
+      setSelectBackImg(2);
     } else if (select == 3) {
-      return backImg4;
+      setSelectBackImg(3);
     } else if (select == 4) {
-      return backImg5;
+      setSelectBackImg(4);
     } else if (select == 5) {
-      return backImg6;
+      setSelectBackImg(5);
     } else if (select == 6) {
-      return backImg7;
+      setSelectBackImg(6);
     }
   }
   console.log(selectBackImg);
@@ -113,7 +124,7 @@ function App() {
     return (
       <Main>
         <DiaryStateContext.Provider value={data}>
-          <BackImg src={backImg1} />
+          <BackImg src={backImgArr[selectBackImg].img} />
           <DiaryDispatchContext.Provider
             value={{ data, onCreate, onUpdate, onDelete }}
           >
@@ -121,7 +132,12 @@ function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={<Home setSelectBackImg={setSelectBackImg} />}
+                  element={
+                    <Home
+                      clickModal={clickModal}
+                      setClickModal={setClickModal}
+                    />
+                  }
                 />
                 <Route path="/new" element={<New />} />
                 <Route path="/diary/:id" element={<Diary />} />
@@ -129,7 +145,11 @@ function App() {
               </Routes>
               <div>데이터 준비중입니다</div>
             </MainContent>
-            <SelectSpace>123</SelectSpace>
+            {clickModal ? (
+              <SelectSpace>
+                <Modal changeImg={changeImg} />
+              </SelectSpace>
+            ) : null}
           </DiaryDispatchContext.Provider>
         </DiaryStateContext.Provider>
       </Main>
@@ -138,7 +158,7 @@ function App() {
     return (
       <Main>
         <DiaryStateContext.Provider value={data}>
-          <BackImg src={changeImg(selectBackImg)} />
+          <BackImg src={backImgArr[selectBackImg].img} />
           <DiaryDispatchContext.Provider
             value={{ data, onCreate, onUpdate, onDelete }}
           >
@@ -146,16 +166,23 @@ function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={<Home setSelectBackImg={setSelectBackImg} />}
+                  element={
+                    <Home
+                      clickModal={clickModal}
+                      setClickModal={setClickModal}
+                    />
+                  }
                 />
                 <Route path="/new" element={<New />} />
                 <Route path="/diary/:id" element={<Diary />} />
                 <Route path="/edit/:id" element={<Edit />} />
               </Routes>
             </MainContent>
-            <SelectSpace>
-              <Modal />
-            </SelectSpace>
+            {clickModal ? (
+              <SelectSpace>
+                <Modal changeImg={changeImg} />
+              </SelectSpace>
+            ) : null}
           </DiaryDispatchContext.Provider>
         </DiaryStateContext.Provider>
       </Main>
@@ -164,7 +191,7 @@ function App() {
 }
 const Main = styled.div`
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 550px;
   width: 100%;
   height: 95vh;
   background-color: white;
@@ -186,9 +213,8 @@ const MainContent = styled.div`
   overflow-y: hidden;
 `;
 const SelectSpace = styled.div`
-  width: 200px;
-  height: 89vh;
-  border: 5px solid red;
+  width: 20vh;
+  height: 90vh;
   z-index: 3;
 `;
 const BackImg = styled.img`

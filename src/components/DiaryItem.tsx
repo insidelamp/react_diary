@@ -42,7 +42,7 @@ const ItemWrapper = styled.div`
 const ImgWrapper = styled.div`
   cursor: pointer;
   min-width: 100px;
-  height: 70px;
+  height: 60px;
   border-radius: 5px;
   display: flex;
   justify-content: center;

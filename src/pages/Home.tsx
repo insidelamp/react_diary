@@ -8,7 +8,7 @@ import { getMonthRangeByDate, setPageTitle } from "../until";
 import DiaryList from "../components/DiaryList";
 import { BackImgSelectType } from "../App";
 
-function Home({ setSelectBackImg }: BackImgSelectType) {
+function Home({ clickModal, setClickModal }: BackImgSelectType) {
   const [pivotDate, setPrivotDate] = useState<Date>(new Date());
   const data = useContext(DiaryStateContext);
   const [filteredData, setFilteredDate] = useState<DateType[]>([]);
@@ -22,7 +22,6 @@ function Home({ setSelectBackImg }: BackImgSelectType) {
   const onDecreaseMonth = () => {
     setPrivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() - 1));
   };
-  console.log(setSelectBackImg);
   useEffect(() => {
     if (data !== null && data.length >= 1) {
       const { beginTimeStamp, endTimeStamp } = getMonthRangeByDate(pivotDate);
@@ -46,7 +45,11 @@ function Home({ setSelectBackImg }: BackImgSelectType) {
         rightChild={<Button text={">"} onClickFunc={onIncreaseMonth} />}
       />
 
-      <DiaryList data={filteredData} setSelectBackImg={setSelectBackImg} />
+      <DiaryList
+        data={filteredData}
+        clickModal={clickModal}
+        setClickModal={setClickModal}
+      />
     </HomeWrapper>
   );
 }
