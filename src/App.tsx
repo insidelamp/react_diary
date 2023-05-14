@@ -47,7 +47,7 @@ function App() {
   >(reducer, []);
   const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
   const [selectBackImg, setSelectBackImg] = useState<number>(0);
-  const [clickModal, setClickModal] = useState<boolean>(false);
+  const [clickModal, setClickModal] = useState<boolean>(true);
   useEffect(() => {
     const rawData = localStorage.getItem("diary");
     if (!rawData) {
@@ -145,11 +145,9 @@ function App() {
               </Routes>
               <div>데이터 준비중입니다</div>
             </MainContent>
-            {clickModal ? (
-              <SelectSpace>
-                <Modal changeImg={changeImg} />
-              </SelectSpace>
-            ) : null}
+            <SelectSpace clickModal={clickModal}>
+              <Modal changeImg={changeImg} />
+            </SelectSpace>
           </DiaryDispatchContext.Provider>
         </DiaryStateContext.Provider>
       </Main>
@@ -178,11 +176,9 @@ function App() {
                 <Route path="/edit/:id" element={<Edit />} />
               </Routes>
             </MainContent>
-            {clickModal ? (
-              <SelectSpace>
-                <Modal changeImg={changeImg} />
-              </SelectSpace>
-            ) : null}
+            <SelectSpace clickModal={clickModal}>
+              <Modal changeImg={changeImg} />
+            </SelectSpace>
           </DiaryDispatchContext.Provider>
         </DiaryStateContext.Provider>
       </Main>
@@ -193,7 +189,7 @@ const Main = styled.div`
   margin: 0 auto;
   max-width: 550px;
   width: 100%;
-  height: 95vh;
+  height: 85vh;
   background-color: white;
   box-shadow: rgba(100, 100, 100, 0.2) 0px 7px 29px 0px;
   overflow: hidden;
@@ -205,17 +201,36 @@ const Main = styled.div`
 const MainContent = styled.div`
   padding: 0px 20px;
   width: 100%;
-  height: 89vh;
+  height: 70vh;
   border: 4px solid black;
   z-index: 3;
   background-color: white;
   border-radius: 20px;
   overflow-y: hidden;
 `;
+
 const SelectSpace = styled.div`
   width: 20vh;
-  height: 90vh;
+  height: 70vh;
   z-index: 3;
+  animation: ${({ clickModal }: { clickModal: boolean }) =>
+    clickModal ? "fadeIn 2s forwards" : "fadeOut 2s forwards"};
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 `;
 const BackImg = styled.img`
   width: 100%;

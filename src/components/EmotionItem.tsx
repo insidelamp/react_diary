@@ -33,7 +33,7 @@ function EmotionItem({
 const EmotionItemWrapper = styled.div`
   cursor: pointer;
   border-radius: 5px;
-  padding: 15px;
+  padding: 15px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,6 +69,8 @@ const EmotionItemImg = styled.img`
 `;
 
 const EmotionItemSpan = styled.span`
-  font-size: 18px;
+  width: 45px;
+  text-align: center;
+  font-size: 10px;
 `;
 export default React.memo(EmotionItem);

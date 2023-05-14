@@ -36,6 +36,7 @@ const ModalSpace = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -49,7 +50,9 @@ const ModalLabel = styled.label`
 `;
 
 const SmallImg = styled.img`
-  width: 80%;
-  height: 75px;
+  width: 80px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid black;
 `;
 export default Modal;

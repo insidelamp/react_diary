@@ -115,17 +115,16 @@ const EditorSection = styled.div`
 `;
 const EditorTitle = styled.h1`
   margin: 20px 0px;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
 `;
 const EditorInput = styled.input`
   border: none;
   border-radius: 5px;
   background-color: #ececec;
-  padding: 20px;
-  font-size: 20px;
+  font-size: 15px;
   font-family: "Instrument Serif", serif;
-  padding: 10px 0px;
+  padding: 10px 5px;
   cursor: pointer;
   margin-bottom: 20px;
 `;
@@ -137,7 +136,7 @@ const EditorTextarea = styled.textarea`
   font-size: 20px;
   font-family: "Instrument Serif", serif;
   width: 100%;
-  min-height: 150px;
+  min-height: 100px;
   box-sizing: border-box;
   resize: vertical;
   margin-bottom: 20px;
