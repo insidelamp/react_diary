@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BackImgSelectType } from "../App";
 import Button from "./Button";
 import DiaryItem from "./DiaryItem";
+import Modal from "./Modal";
 import { DateType } from "./Reducer";
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
   { value: "oldest", name: "오래된 순" },
 ];
-function DiaryList(data: { data: DateType[] }) {
+
+interface ListType {
+  data: DateType[];
+  setSelectBackImg: React.Dispatch<React.SetStateAction<number>>;
+}
+function DiaryList({ data, setSelectBackImg }: ListType) {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState<string>("latest");
   const [sortedData, setSortedData] = useState<DateType[]>([]);
@@ -19,6 +26,7 @@ function DiaryList(data: { data: DateType[] }) {
   const onClickNew = () => {
     navigate("/new");
   };
+
   useEffect(() => {
     const compare = (a: DateType, b: DateType) => {
       if (sortType === "latest") {
@@ -27,7 +35,7 @@ function DiaryList(data: { data: DateType[] }) {
         return Number(a.date) - Number(b.date);
       }
     };
-    const copyList = JSON.parse(JSON.stringify(data.data));
+    const copyList = JSON.parse(JSON.stringify(data));
     copyList.sort(compare);
     setSortedData(copyList);
   }, [data, sortType]);
@@ -50,6 +58,7 @@ function DiaryList(data: { data: DateType[] }) {
             onClickFunc={onClickNew}
           />
         </ListRight>
+        <BackSelectBtn>배경선택</BackSelectBtn>
       </MenuWrapper>
       <ListWrapper>
         {sortedData.map((it) => (
@@ -59,6 +68,15 @@ function DiaryList(data: { data: DateType[] }) {
     </Wrapper>
   );
 }
+const BackSelectBtn = styled.div`
+  width: 200px;
+  background-color: goldenrod;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
+
 const Wrapper = styled.div`
   margin: 20px 10px 30px 0px;
   display: flex;
@@ -94,9 +112,9 @@ const MenuSelect = styled.select`
 const ListRight = styled.div`
   border: none;
   background-color: white;
-  width: 100%;
+  width: 95%;
   & > button {
-    width: 100%;
+    width: 95%;
     flex-grow: 1;
   }
 `;

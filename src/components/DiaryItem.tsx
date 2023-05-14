@@ -41,8 +41,8 @@ const ItemWrapper = styled.div`
 `;
 const ImgWrapper = styled.div`
   cursor: pointer;
-  min-width: 120px;
-  height: 80px;
+  min-width: 100px;
+  height: 70px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -73,11 +73,11 @@ const InfoSection = styled.div`
 `;
 const DateWrapper = styled.div`
   font-weight: bold;
-  font-size: 25px;
-  margin-bottom: 5px;
+  font-size: 18px;
 `;
 const ContentWrapper = styled.div`
-  font-size: 18px;
+  margin-top: 15px;
+  font-size: 13px;
 `;
 const ButtonSection = styled.div`
   min-width: 70px;

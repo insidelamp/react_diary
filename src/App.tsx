@@ -7,13 +7,24 @@ import New from "./pages/New";
 import Diary from "./pages/Diary";
 import Edit from "./pages/Edit";
 
+import styled from "styled-components";
+import backImg1 from "./img/backgroudImg/beautiful-nature.jpg";
+import backImg2 from "./img/backgroudImg/beautiful-nature2.jpg";
+import backImg3 from "./img/backgroudImg/beautiful-nature3.jpg";
+import backImg4 from "./img/backgroudImg/flower.png";
+import backImg5 from "./img/backgroudImg/flower2.png";
+import backImg6 from "./img/backgroudImg/wood.jpg";
+import backImg7 from "./img/backgroudImg/christmas-bauble.jpg";
+import Modal from "./components/Modal";
 type IStateContext = {
   data: DateType[];
   onCreate: ({ date, content, emotionId }: DateType) => void;
   onUpdate: ({ targetId, date, content, emotionId }: DateType) => void;
   onDelete: ({ targetId, date }: DateType) => void;
 };
-
+export type BackImgSelectType = {
+  setSelectBackImg: React.Dispatch<React.SetStateAction<number>>;
+};
 export const DiaryStateContext = React.createContext<DateType[] | null>(null);
 export const DiaryDispatchContext = React.createContext<IStateContext>(
   {} as IStateContext
@@ -25,6 +36,7 @@ function App() {
     (arg1: DateType[], actions: Actions) => DateType[]
   >(reducer, []);
   const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
+  const [selectBackImg, setSelectBackImg] = useState<number>(0);
   useEffect(() => {
     const rawData = localStorage.getItem("diary");
     if (!rawData) {
@@ -79,42 +91,111 @@ function App() {
     }
   };
 
+  function changeImg(select: number) {
+    if (select == 0) {
+      return backImg1;
+    } else if (select == 1) {
+      return backImg2;
+    } else if (select == 2) {
+      return backImg3;
+    } else if (select == 3) {
+      return backImg4;
+    } else if (select == 4) {
+      return backImg5;
+    } else if (select == 5) {
+      return backImg6;
+    } else if (select == 6) {
+      return backImg7;
+    }
+  }
+  console.log(selectBackImg);
   if (!isDataLoaded) {
     return (
-      <DiaryStateContext.Provider value={data}>
-        <DiaryDispatchContext.Provider
-          value={{ data, onCreate, onUpdate, onDelete }}
-        >
-          <div className="App">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/new" element={<New />} />
-              <Route path="/diary/:id" element={<Diary />} />
-              <Route path="/edit/:id" element={<Edit />} />
-            </Routes>
-            <div>데이터 준비중입니다</div>
-          </div>
-        </DiaryDispatchContext.Provider>
-      </DiaryStateContext.Provider>
+      <Main>
+        <DiaryStateContext.Provider value={data}>
+          <BackImg src={backImg1} />
+          <DiaryDispatchContext.Provider
+            value={{ data, onCreate, onUpdate, onDelete }}
+          >
+            <MainContent className="App">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Home setSelectBackImg={setSelectBackImg} />}
+                />
+                <Route path="/new" element={<New />} />
+                <Route path="/diary/:id" element={<Diary />} />
+                <Route path="/edit/:id" element={<Edit />} />
+              </Routes>
+              <div>데이터 준비중입니다</div>
+            </MainContent>
+            <SelectSpace>123</SelectSpace>
+          </DiaryDispatchContext.Provider>
+        </DiaryStateContext.Provider>
+      </Main>
     );
   } else {
     return (
-      <DiaryStateContext.Provider value={data}>
-        <DiaryDispatchContext.Provider
-          value={{ data, onCreate, onUpdate, onDelete }}
-        >
-          <div className="App">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/new" element={<New />} />
-              <Route path="/diary/:id" element={<Diary />} />
-              <Route path="/edit/:id" element={<Edit />} />
-            </Routes>
-          </div>
-        </DiaryDispatchContext.Provider>
-      </DiaryStateContext.Provider>
+      <Main>
+        <DiaryStateContext.Provider value={data}>
+          <BackImg src={changeImg(selectBackImg)} />
+          <DiaryDispatchContext.Provider
+            value={{ data, onCreate, onUpdate, onDelete }}
+          >
+            <MainContent className="App">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Home setSelectBackImg={setSelectBackImg} />}
+                />
+                <Route path="/new" element={<New />} />
+                <Route path="/diary/:id" element={<Diary />} />
+                <Route path="/edit/:id" element={<Edit />} />
+              </Routes>
+            </MainContent>
+            <SelectSpace>
+              <Modal />
+            </SelectSpace>
+          </DiaryDispatchContext.Provider>
+        </DiaryStateContext.Provider>
+      </Main>
     );
   }
 }
+const Main = styled.div`
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  height: 95vh;
+  background-color: white;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 7px 29px 0px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+`;
+const MainContent = styled.div`
+  padding: 0px 20px;
+  width: 100%;
+  height: 89vh;
+  border: 4px solid black;
+  z-index: 3;
+  background-color: white;
+  border-radius: 20px;
+  overflow-y: hidden;
+`;
+const SelectSpace = styled.div`
+  width: 200px;
+  height: 89vh;
+  border: 5px solid red;
+  z-index: 3;
+`;
+const BackImg = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+`;
 
 export default App;

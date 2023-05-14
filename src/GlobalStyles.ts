@@ -20,25 +20,7 @@ body {
   align-items: center;
 }
 
-#root{
-  margin: 0 auto;
-  max-width: 700px;
-  width: 100%;
-  height: 95vh;
-  background-color: white;
-  box-shadow: rgba(100,100,100,0.2) 0px 7px 29px 0px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  box-shadow: 3px 3px 20px;
-}
-.App{
-  padding:0px 20px;
-  width: 100%;
-  height: 89vh;
-}
+
 
 `;
 export default GlobalStyles;

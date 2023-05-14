@@ -6,7 +6,9 @@ import styled from "styled-components";
 import { DateType } from "../components/Reducer";
 import { getMonthRangeByDate, setPageTitle } from "../until";
 import DiaryList from "../components/DiaryList";
-function Home() {
+import { BackImgSelectType } from "../App";
+
+function Home({ setSelectBackImg }: BackImgSelectType) {
   const [pivotDate, setPrivotDate] = useState<Date>(new Date());
   const data = useContext(DiaryStateContext);
   const [filteredData, setFilteredDate] = useState<DateType[]>([]);
@@ -20,7 +22,7 @@ function Home() {
   const onDecreaseMonth = () => {
     setPrivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() - 1));
   };
-
+  console.log(setSelectBackImg);
   useEffect(() => {
     if (data !== null && data.length >= 1) {
       const { beginTimeStamp, endTimeStamp } = getMonthRangeByDate(pivotDate);
@@ -43,7 +45,8 @@ function Home() {
         leftChild={<Button text={"<"} onClickFunc={onDecreaseMonth} />}
         rightChild={<Button text={">"} onClickFunc={onIncreaseMonth} />}
       />
-      <DiaryList data={filteredData} />
+
+      <DiaryList data={filteredData} setSelectBackImg={setSelectBackImg} />
     </HomeWrapper>
   );
 }
